@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/fortune', 'FortuneController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/fortune/{id}', 'FortuneController@create');
 Route::post('/fortune/{id}', 'FortuneController@store');
 Route::get('/fortune/{id}/peeked', 'FortuneController@peeked');
