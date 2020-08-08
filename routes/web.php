@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/fortune/{id}', 'FortuneController@create');
-Route::post('/fortune/{id}', 'FortuneController@store');
-Route::get('/fortune/{id}/peeked', 'FortuneController@peeked');
+//Route::get('/fortune/{id}', 'FortuneController@create');
+//Route::post('/fortune/{id}', 'FortuneController@store');
+//Route::get('/fortune/{id}/peeked', 'FortuneController@peeked');
 
 
 Auth::routes(['verify' => true]);

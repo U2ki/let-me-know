@@ -26,10 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $fortune_id = 0;
-        $user_id = Auth::user()->id;
-        $fortunes = Fortune::where('peek_user_id',$user_id)->get();
-        return view('home', ['fortunes' => $fortunes, 'fortune_id' => $fortune_id]);
+//        $fortune_id = 0;
+//        $user_id = Auth::user()->id;
+//        $fortunes = Fortune::where('peek_user_id',$user_id)->get();
+//        return view('home', ['fortunes' => $fortunes, 'fortune_id' => $fortune_id]);
+        return view('home');
     }
 
     /**
