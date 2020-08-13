@@ -5,6 +5,12 @@
     <div class="row justify-content-center">
         <div class="w-100">
             <div class="card m-3">
+                <div class="card-header">アンケートの新規作成</div>
+                <div class="card-body">
+                    <input button> <!-- 新規作成のボタンの追加 -->
+                </div>
+            </div>
+            <div class="card m-3">
                 <div class="card-header">過去の履歴</div>
                 <div class="card-body">
                     ここに削除ボタンあると良いよね<br>
