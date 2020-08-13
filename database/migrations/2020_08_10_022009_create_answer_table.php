@@ -16,10 +16,10 @@ class CreateAnswerTable extends Migration
         Schema::create('answer', function (Blueprint $table) {
             $table->bigIncrements( 'id' );
             $table->text( 'a1' )->comment( 'A1' );
-            $table->text( 'a2' )->comment( 'A2' );
-            $table->text( 'a3' )->comment( 'A3' );
-            $table->text( 'a4' )->comment( 'A4' );
-            $table->text( 'a5' )->comment( 'A5' );
+            $table->text( 'a2' )->comment( 'A2' )->nullable();
+            $table->text( 'a3' )->comment( 'A3' )->nullable();
+            $table->text( 'a4' )->comment( 'A4' )->nullable();
+            $table->text( 'a5' )->comment( 'A5' )->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

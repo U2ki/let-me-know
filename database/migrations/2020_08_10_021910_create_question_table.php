@@ -19,10 +19,10 @@ class CreateQuestionTable extends Migration
             $table->text( 'url' )->comment( 'URL' );
             $table->integer( 'email_availability' )->default( 0 )->comment( 'メールの有無' );
             $table->text( 'q1' )->comment( 'Q1' );
-            $table->text( 'q2' )->comment( 'Q2' );
-            $table->text( 'q3' )->comment( 'Q3' );
-            $table->text( 'q4' )->comment( 'Q4' );
-            $table->text( 'q5' )->comment( 'Q5' );
+            $table->text( 'q2' )->comment( 'Q2' )->nullable();
+            $table->text( 'q3' )->comment( 'Q3' )->nullable();
+            $table->text( 'q4' )->comment( 'Q4' )->nullable();
+            $table->text( 'q5' )->comment( 'Q5' )->nullable();
             $table->integer( 'layout' )->default( 0 )->comment( 'レイアウト' );
             $table->timestamps();
             $table->softDeletes();

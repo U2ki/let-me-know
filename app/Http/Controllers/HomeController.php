@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use App\Fortune;
+use DB;
+use App\Question;
 use Auth;
 
 class HomeController extends Controller
@@ -26,11 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $fortune_id = 0;
-//        $user_id = Auth::user()->id;
-//        $fortunes = Fortune::where('peek_user_id',$user_id)->get();
-//        return view('home', ['fortunes' => $fortunes, 'fortune_id' => $fortune_id]);
-        return view('home');
+        $question_id = 0;
+        $user_id = Auth::user()->id;
+        $questions = DB::table('question_user')->where('user_id',$user_id)->get();
+        return view('home', ['questions' => $questions, 'question_id' => $question_id]);
+//        return view('home');
     }
 
     /**
