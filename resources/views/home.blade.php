@@ -4,12 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="w-100">
-            <div class="card m-3">
-                <div class="card-header">アンケートの新規作成</div>
-                <div class="card-body">
-                    <input button> <!-- 新規作成のボタンの追加 -->
-                </div>
+            <div class="float-right mx-3">
+                <a href="/home/create" class="btn btn-outline-secondary active px-5" role="button" aria-pressed="true">新規登録</a>
             </div>
+        </div>
+        <div class="w-100">
             <div class="card m-3">
                 <div class="card-header">過去の履歴</div>
                 <div class="card-body">

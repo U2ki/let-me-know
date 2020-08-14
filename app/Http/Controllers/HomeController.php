@@ -31,7 +31,6 @@ class HomeController extends Controller
         $user_id = Auth::user()->id;
         $questions = DB::table('question_user')->where('user_id',$user_id)->get();
         return view('home', ['questions' => $questions, 'question_id' => $question_id]);
-//        return view('home');
     }
 
     /**
@@ -40,7 +39,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('fix_modal_window');
+        return view('createQuestion');
     }
 
     /**

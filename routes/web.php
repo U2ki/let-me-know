@@ -25,5 +25,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified');
+Route::get('/home/create', 'HomeController@create');
 Route::delete('/home/delete/{id}', 'HomeController@destroy');
 
