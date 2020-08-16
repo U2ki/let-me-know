@@ -8,7 +8,7 @@
                 <div class="card m-3">
                     <div class="card-header">新規作成</div>
                     <div class="card-body">
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" id="myForm" name="myForm" novalidate>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label pr-1" for="text10">タイトル</label>
                                 <div class="input-group col-sm-10">
@@ -31,15 +31,35 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label pr-1" for="text10">質問 ⑴</label>
-                                <div class="input-group col-sm-10">
-                                    <input type="text" class="form-control" id="text10" required>
-                                    <div class="invalid-feedback">
-                                        Please enter question No.1.
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="inputEmail" class="col-sm-2 col-form-label pr-1" for="text10">質問 ⑴</label>--}}
+{{--                                <div class="input-group col-sm-10">--}}
+{{--                                    <input type="text" class="form-control" id="text10" required>--}}
+{{--                                    <div class="invalid-feedback">--}}
+{{--                                        Please enter question No.1.--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+                            <div id="add-form" class="form-group">
+                                <div class="unit">
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-2 col-form-label pr-1" for="text10">質問 ⑴</label>
+                                        <div class="input-group col-sm-10">
+                                            <input type="text" class="form-control" id="text10" required>
+                                            <div class="invalid-feedback" id="validation">
+                                                Please enter question No.1.
+                                            </div>
+                                        </div>
                                     </div>
+{{--                                    <div class="demo-minus input-group-append">--}}
+{{--                                        <span class="btn btn-danger">-</span>--}}
+{{--                                    </div>--}}
+
                                 </div>
                             </div>
+                            <div id="demo-plus" class="btn btn-primary">+</div>
+
                             <button class="btn btn-primary" type="submit">Submit form</button>
                         </form>
                     </div>

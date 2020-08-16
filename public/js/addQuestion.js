@@ -1,28 +1,22 @@
+var minCount = 1;
+var maxCount = 5;
+
 $(function(){
-    // フォームカウント
-    var frm_cnt = 0;
-
-    // clone object
-    $(document).on('click', 'span.add', function() {
-        var original = $('#form_block\\[' + frm_cnt + '\\]');
-        var originCnt = frm_cnt;
-        var originVal = $("input[name='sex\\[" + frm_cnt + "\\]']:checked").val();
-
-        frm_cnt++;
-
-        original
-            .clone()
-            .hide()
-            .insertAfter(original)
-            .attr('id', 'form_block[' + frm_cnt + ']') // クローンのid属性を変更。
-            .find("input[type='radio'][checked]").prop('checked', true)
-            .end() // 一度適用する
-            .find('input, textarea').each(function(idx, obj) {
-            $(obj).attr({
-                id: $(obj).attr('id').replace(/\[[0-9]\]+$/, '[' + frm_cnt + ']'),
-                name: $(obj).attr('name').replace(/\[[0-9]\]+$/, '[' + frm_cnt + ']')
-            });
-            $(obj).val('');
-        });
+    $('#demo-plus').on('click', function(){
+        var inputCount = $('#add-form .unit').length;
+        if (inputCount < maxCount){
+            var element = $('#add-form .unit:last-child').clone(true);
+            var inputList = element[0].querySelectorAll('input[type="text"]');
+            for (var i = 0; i < inputList.length; i++) {
+                inputList[i].value = "";
+            }
+            $('#add-form .unit').parent().append(element);
+        }
+    });
+    $('.demo-minus').on('click', function(){
+        var inputCount = $('#add-form .unit').length;
+        if (inputCount > minCount){
+            $(this).parents('.unit').remove();
+        }
     });
 });
