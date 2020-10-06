@@ -8,9 +8,10 @@
                 <div class="card m-3">
                     <div class="card-header">新規作成</div>
                     <div class="card-body">
-                        <form class="needs-validation" id="myForm" name="myForm" novalidate>
+                        <form method="post" action="" class="needs-validation" id="myForm" name="myForm" novalidate>
+                            {{ csrf_field() }}
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label pr-1">タイトル</label>
+                                <label class="col-sm-2 col-form-label pr-1">タイトル <span style="color: firebrick;">*</span></label>
                                 <div class="input-group col-sm-10">
                                     <input type="text" class="form-control" name="title" required>
                                     <div class="invalid-feedback">
@@ -32,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label pr-1">質問 ⑴</label>
+                                <label class="col-sm-2 col-form-label pr-1">質問 ⑴ <span style="color: firebrick;">*</span></label>
                                 <div class="input-group col-sm-10">
                                     <input type="text" class="form-control" name="q1" required>
                                     <div class="invalid-feedback">
@@ -43,7 +44,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label pr-1">質問 ⑵</label>
                                 <div class="input-group col-sm-10">
-                                    <input type="text" class="w-100" name="q2">
+                                    <input type="text" class="form-control w-100" name="q2">
                                     <div class="invalid-feedback">
                                         Please enter question No.2.
                                     </div>
@@ -52,7 +53,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label pr-1">質問 ⑶</label>
                                 <div class="input-group col-sm-10">
-                                    <input type="text" class="w-100" name="q3">
+                                    <input type="text" class="form-control w-100" name="q3">
                                     <div class="invalid-feedback">
                                         Please enter question No.3.
                                     </div>
@@ -61,7 +62,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label pr-1">質問 ⑷</label>
                                 <div class="input-group col-sm-10">
-                                    <input type="text" class="w-100" name="q4">
+                                    <input type="text" class="form-control w-100" name="q4">
                                     <div class="invalid-feedback">
                                         Please enter question No.4.
                                     </div>
@@ -70,7 +71,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label pr-1">質問 ⑸</label>
                                 <div class="input-group col-sm-10">
-                                    <input type="text" class="w-100" name="q5">
+                                    <input type="text" class="form-control w-100" name="q5">
                                     <div class="invalid-feedback">
                                         Please enter question No.5.
                                     </div>
@@ -103,11 +104,11 @@
                                 <label class="col-sm-2 col-form-label pr-1" for="text10">レイアウト</label>
                                 <div class="input-group col-sm-9">
                                     <div class="form-check form-check-inline p-2">
-                                        <input class="form-check-input" type="radio" name="layout" value="0" checked>
+                                        <input class="form-check-input" type="radio" name="layout" value="1" checked>
                                         <label class="m-auto px-2">1</label>
                                     </div>
                                     <div class="form-check form-check-inline px-4">
-                                        <input class="form-check-input" type="radio" name="layout" value="1">
+                                        <input class="form-check-input" type="radio" name="layout" value="2">
                                         <label class="m-auto px-2">2</label>
                                     </div>
                                 </div>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="w-100">
             <div class="float-right mx-3">
-                <a href="/home/create" class="btn btn-outline-secondary active px-5" role="button" aria-pressed="true">新規登録</a>
+                <a href="/home/create" class="btn btn-outline-secondary active px-5" role="button" aria-pressed="true">質問を作成</a>
             </div>
         </div>
         <div class="w-100">

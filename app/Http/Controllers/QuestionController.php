@@ -51,16 +51,21 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
+        while(true) {
+            $rand = $this->random();
+            if ( !DB::table( 'question' )->where( 'url', $rand )->exists() ) break;
+        }
+
         $question = new Question();
-        $question->title = $request->title;
-        $question->url = ;
+        $question->title              = $request->title;
+        $question->url                = $rand;
         $question->email_availability = $request->emailAvailability;
-        $question->q1 = $request->q1;
-        $question->q2 = $request->q2;
-        $question->q3 = $request->q3;
-        $question->q4 = $request->q4;
-        $question->q5 = $request->q5;
-        $question->layout = $request->layout;
+        $question->q1                 = $request->q1;
+        $question->q2                 = $request->q2;
+        $question->q3                 = $request->q3;
+        $question->q4                 = $request->q4;
+        $question->q5                 = $request->q5;
+        $question->layout             = $request->layout;
         $question->save();
 
 //        $toMail = DB::table('users')->where('id', $question->peek_user_id)->value('email');
@@ -118,5 +123,10 @@ class QuestionController extends Controller
     {
         Fortune::find($request->id)->delete();
         return redirect('/home');
+    }
+
+    function random($length = 8)
+    {
+        return substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, $length);
     }
 }
