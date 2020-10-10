@@ -26,8 +26,8 @@
 
             .flex-center {
                 align-items: center;
-                display: flex;
                 justify-content: center;
+                padding: 5em 0;
             }
 
             .position-ref {
@@ -38,6 +38,13 @@
                 position: absolute;
                 right: 10px;
                 top: 18px;
+            }
+
+            .top-left {
+                position: absolute;
+                left: 10px;
+                top: 18px;
+                padding: 0 1em;
             }
 
             .content {
@@ -66,16 +73,21 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">マイページ</a>
-                    @else
-                        <a href="{{ route('login') }}">ログイン</a>
+                <div class="container links">
+                    <a class="top-left navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">マイページ</a>
+                        @else
+                            <a href="{{ route('login') }}">ログイン</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">新規登録</a>
-                        @endif
-                    @endauth
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">新規登録</a>
+                            @endif
+                        @endauth
+                    </div>
                 </div>
             @endif
             <div class="content">

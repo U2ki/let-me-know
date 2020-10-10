@@ -30,8 +30,8 @@ class QuestionController extends Controller
         // 作成したQuestionを表示
         $question_id = 0;
         $user_id = Auth::user()->id;
-        $questions = DB::table('question_user')->where('user_id',$user_id)->get();
-        return view('home', ['questions' => $questions, 'question_id' => $question_id]);
+        $questions = Question::where('user_id',$user_id)->get();
+        return view('home', ['questions' => $questions]);
     }
 
     /**
@@ -48,6 +48,7 @@ class QuestionController extends Controller
      *
      * @param Request $request
      *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -57,6 +58,7 @@ class QuestionController extends Controller
         }
 
         $question = new Question();
+        $question->user_id            = Auth::id();
         $question->title              = $request->title;
         $question->url                = $rand;
         $question->email_availability = $request->emailAvailability;
@@ -69,9 +71,7 @@ class QuestionController extends Controller
         $question->save();
 
 //        $toMail = DB::table('users')->where('id', $question->peek_user_id)->value('email');
-
-
-//        Mail::to($toMail)->send( new \App\Mail\Fortune($question->my_name, $question->my_crush_name) );
+//        Mail::to($toMail)->send( new \App\Mail\sendAnswer($question->my_name, $question->my_crush_name) );
 
         return redirect('/home');
     }
@@ -80,51 +80,74 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $url
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($id)
+    public function show($url)
     {
-        //
+        $question = Question::find($url);
+        return view('show', ['question' => $question]);
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param $id
      *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('edit', ['question' => $question]);
     }
 
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param Request $request
      *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update($id)
+    public function update(Request $request)
     {
-        //
+        $question = Question::find($request->id);
+        $question->title              = $request->title;
+        $question->email_availability = $request->emailAvailability;
+        $question->q1                 = $request->q1;
+        $question->q2                 = $request->q2;
+        $question->q3                 = $request->q3;
+        $question->q4                 = $request->q4;
+        $question->q5                 = $request->q5;
+        $question->layout             = $request->layout;
+        $question->save();
+
+        return redirect('/home');
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $id
      *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        Fortune::find($request->id)->delete();
+        Question::findOrFail($id)->delete();
         return redirect('/home');
     }
 
+
+    /**
+     * @param int $length
+     *
+     * @return false|string
+     */
     function random($length = 8)
     {
         return substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, $length);

@@ -15,6 +15,7 @@ class CreateQuestionTable extends Migration
     {
         Schema::create('question', function (Blueprint $table) {
             $table->bigIncrements( 'id' );
+            $table->unsignedBigInteger( 'user_id' );
             $table->text( 'title' )->comment( 'タイトル' );
             $table->text( 'url' )->comment( 'URL' );
             $table->integer( 'email_availability' )->default( 0 )->comment( 'メールの有無' );

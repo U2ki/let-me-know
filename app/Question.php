@@ -16,6 +16,7 @@ class Question extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'title',
         'url',
         'email_availability',
@@ -37,14 +38,4 @@ class Question extends Model
         'updated_at',
         'deleted_at',
     ];
-
-    public function children() {
-        return $this->hasMany( self::class, 'parent_task_id' );
-    }
-
-    public function project() {
-        return $this->belongsTo( 'App\Models\Project' );
-    }
-
-
 }

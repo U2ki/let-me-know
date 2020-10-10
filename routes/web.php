@@ -17,15 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/fortune/{id}', 'FortuneController@create');
-//Route::post('/fortune/{id}', 'FortuneController@store');
-//Route::get('/fortune/{id}/peeked', 'FortuneController@peeked');
-
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'QuestionController@index')->middleware('verified');
+Route::get('/home/{url}', 'QuestionController@show');
 Route::get('/home/create', 'QuestionController@create');
 Route::post('/home/create', 'QuestionController@store');
+Route::get('/home/edit/{id}', 'QuestionController@edit');
+Route::post('/home/edit/{id}', 'QuestionController@update');
 Route::delete('/home/delete/{id}', 'QuestionController@destroy');
 
+Route::get('/ans/{url}', 'AnswerController@create');

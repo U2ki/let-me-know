@@ -15,6 +15,7 @@ class CreateAnswerTable extends Migration
     {
         Schema::create('answer', function (Blueprint $table) {
             $table->bigIncrements( 'id' );
+            $table->unsignedBigInteger( 'question_id' );
             $table->text( 'a1' )->comment( 'A1' );
             $table->text( 'a2' )->comment( 'A2' )->nullable();
             $table->text( 'a3' )->comment( 'A3' )->nullable();
