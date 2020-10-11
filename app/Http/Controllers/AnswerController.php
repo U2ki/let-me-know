@@ -8,6 +8,7 @@ use DB;
 use App\Question;
 use App\Answer;
 use Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AnswerController extends Controller
 {
@@ -30,10 +31,10 @@ class AnswerController extends Controller
      */
     public function create($url)
     {
-        if ( DB::table( 'question' )->where( 'url', $url )->exists()) {
-            $question = DB::table( 'question' )->where('url', $url)->first();
+        $question = DB::table( 'question' )->where('url', $url)->first();
+        if ($question->id != NULL && $question->deleted_at == NULL) {
             return view('formAnswer', ['question' => $question]);
-        } else return view('error');
+        } else return view('result', ['result' => 'error']);
     }
 
     /**
@@ -45,28 +46,32 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-//        while(true) {
-//            $rand = $this->random();
-//            if ( !DB::table( 'question' )->where( 'url', $rand )->exists() ) break;
-//        }
-//
-//        $question = new Question();
-//        $question->user_id            = Auth::id();
-//        $question->title              = $request->title;
-//        $question->url                = $rand;
-//        $question->email_availability = $request->emailAvailability;
-//        $question->q1                 = $request->q1;
-//        $question->q2                 = $request->q2;
-//        $question->q3                 = $request->q3;
-//        $question->q4                 = $request->q4;
-//        $question->q5                 = $request->q5;
-//        $question->layout             = $request->layout;
-//        $question->save();
+        $answer = new Answer();
+        $answer->question_id        = $request->question_id;
+        $answer->a1                 = $request->a1;
+        $answer->a2                 = $request->a2;
+        $answer->a3                 = $request->a3;
+        $answer->a4                 = $request->a4;
+        $answer->a5                 = $request->a5;
+        $answer->save();
 
-//        $toMail = DB::table('users')->where('id', $question->peek_user_id)->value('email');
-//        Mail::to($toMail)->send( new \App\Mail\sendAnswer($question->my_name, $question->my_crush_name) );
-
-        return redirect('/home');
+        $question = DB::table( 'question' )->where('id', $answer->question_id)->first();
+        if($question->email_availability === 1) {
+            $toMail = DB::table('users')->where('id', $question->user_id)->value('email');
+            Mail::to($toMail)->send( new \App\Mail\sendAnswer(
+                $question->title,
+                $question->q1,
+                $question->q2,
+                $question->q3,
+                $question->q4,
+                $question->q5,
+                $answer->a1,
+                $answer->a2,
+                $answer->a3,
+                $answer->a4,
+                $answer->a5 ) );
+        }
+        return view('result', ['result' => 'normally']);
     }
 
 

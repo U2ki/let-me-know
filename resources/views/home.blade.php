@@ -18,6 +18,7 @@
                             <tr>
                                 <th>回答</th>
                                 <th scope="col">質問タイトル</th>
+                                <th scope="col">URL</th>
                                 <th scope="col">作成日</th>
                                 <th scope="col">編集</th>
                                 <th scope="col">削除</th>
@@ -30,6 +31,12 @@
                                     <a class="btn btn-light btn-sm" href="/home/{{$questions->url}}" role="button">○件</a>
                                 </th>
                                 <td> {{ $questions->title }} </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <div id="targetID">{{ request()->fullUrl() }}/ans/{{ $questions->url }}</div>
+                                        <button id="btnCopy" style="border: initial;"><p class="m-n1"><i class="far fa-copy fa-fw"></i></p></button>
+                                    </div>
+                                </td>
                                 <td> {{ $questions->created_at->format('Y/m/d') }} </td>
                                 <td>
                                     <a class="btn btn-outline-dark btn-sm" href="/home/edit/{{$questions->id}}" role="button">編集</a>

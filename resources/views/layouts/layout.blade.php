@@ -47,10 +47,6 @@
                 padding: 0 1em;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 80px;
             }

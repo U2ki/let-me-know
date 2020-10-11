@@ -28,4 +28,5 @@ Route::get('/home/edit/{id}', 'QuestionController@edit');
 Route::post('/home/edit/{id}', 'QuestionController@update');
 Route::delete('/home/delete/{id}', 'QuestionController@destroy');
 
-Route::get('/ans/{url}', 'AnswerController@create');
+Route::get('/home/ans/{url}', 'AnswerController@create');
+Route::post('/home/ans/{url}', 'AnswerController@store');
