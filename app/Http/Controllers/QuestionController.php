@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use DB;
@@ -28,10 +29,15 @@ class QuestionController extends Controller
     public function index()
     {
         // 作成したQuestionを表示
-        $question_id = 0;
         $user_id = Auth::user()->id;
         $questions = Question::where('user_id',$user_id)->get();
-        return view('home', ['questions' => $questions]);
+        $cnt = 0;
+        $ans_count[] = array();
+        foreach ($questions as $question) {
+            $ans_count[$cnt] = Answer::where('question_id', $question->id)->count();
+            $cnt++;
+        }
+        return view('home', ['questions' => $questions, 'ans_count' => $ans_count]);
     }
 
     /**
@@ -84,10 +90,9 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($url)
+    public function show($id)
     {
-        $question = Question::find($url);
-        return view('show', ['question' => $question]);
+        //
     }
 
 

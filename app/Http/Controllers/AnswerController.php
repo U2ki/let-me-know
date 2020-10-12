@@ -17,9 +17,13 @@ class AnswerController extends Controller
      *
      * @return Renderable
      */
-    public function index()
+    public function index($url)
     {
-        //
+        $question = Question::where('url',$url)->first();
+        if (isset($question->id) && $question->deleted_at == NULL) {
+            $answers = Answer::where('question_id', $question->id)->get();
+            return view( 'show', [ 'question' => $question, 'answers' => $answers ] );
+        } else return view('result', ['result' => 'error']);
     }
 
     /**
@@ -32,7 +36,7 @@ class AnswerController extends Controller
     public function create($url)
     {
         $question = DB::table( 'question' )->where('url', $url)->first();
-        if ($question->id != NULL && $question->deleted_at == NULL) {
+        if (isset($question->id) && $question->deleted_at == NULL) {
             return view('formAnswer', ['question' => $question]);
         } else return view('result', ['result' => 'error']);
     }
@@ -84,8 +88,7 @@ class AnswerController extends Controller
      */
     public function show($url)
     {
-//        $question = Question::find($url);
-//        return view('show', ['questions' => $question]);
+        //
     }
 
 
@@ -98,8 +101,7 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-//        $question = Question::find($id);
-//        return view('edit', ['question' => $question]);
+        //
     }
 
 
@@ -112,18 +114,7 @@ class AnswerController extends Controller
      */
     public function update(Request $request)
     {
-//        $question = Question::find($request->id);
-//        $question->title              = $request->title;
-//        $question->email_availability = $request->emailAvailability;
-//        $question->q1                 = $request->q1;
-//        $question->q2                 = $request->q2;
-//        $question->q3                 = $request->q3;
-//        $question->q4                 = $request->q4;
-//        $question->q5                 = $request->q5;
-//        $question->layout             = $request->layout;
-//        $question->save();
-//
-//        return redirect('/home');
+        //
     }
 
 
@@ -134,9 +125,11 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy($url, $id)
     {
-//        Question::findOrFail($id)->delete();
-//        return redirect('/home');
+        Answer::findOrFail($id)->delete();
+        $question = Question::where('url',$url)->first();
+        $answers = Answer::where('question_id', $question->id)->get();
+        return view('show', ['question' => $question, 'answers' => $answers]);
     }
 }

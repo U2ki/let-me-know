@@ -16,6 +16,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+	                            <?php $count = 0; ?>
                                 <th>回答</th>
                                 <th scope="col">質問タイトル</th>
                                 <th scope="col">URL</th>
@@ -28,13 +29,13 @@
                         @foreach ($questions as $questions)
                             <tr>
                                 <th scope="row">
-                                    <a class="btn btn-light btn-sm" href="/home/{{$questions->url}}" role="button">○件</a>
+                                    <a class="btn btn-light btn-sm" href="/home/{{$questions->url}}" role="button">{{$ans_count[$count]}}件</a>
                                 </th>
                                 <td> {{ $questions->title }} </td>
                                 <td>
                                     <div class="d-flex">
-                                        <div id="targetID">{{ request()->fullUrl() }}/ans/{{ $questions->url }}</div>
-                                        <button id="btnCopy" style="border: initial;"><p class="m-n1"><i class="far fa-copy fa-fw"></i></p></button>
+                                        <div class="targetID">{{ request()->fullUrl() }}/ans/{{ $questions->url }}</div>
+                                        <button id="btnCopy" data-selector=".targetID" style="border: initial;"><p class="m-n1"><i class="far fa-copy fa-fw"></i></p></button>
                                     </div>
                                 </td>
                                 <td> {{ $questions->created_at->format('Y/m/d') }} </td>
@@ -49,6 +50,7 @@
                                     </form>
                                 </td>
                             </tr>
+                            <?php $count++ ?>
                         @endforeach
                         </tbody>
                     </table>

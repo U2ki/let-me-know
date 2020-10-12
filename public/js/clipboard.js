@@ -1,18 +1,15 @@
-document.addEventListener("DOMContentLoaded", function(){
-    document.querySelector('#btnCopy').addEventListener("click", () => {
-        const element = document.querySelector('#targetID'),
-            selection = window.getSelection(),
-            range = document.createRange();
-        range.selectNodeContents(element);
-        selection.removeAllRanges();
-        selection.addRange(range);
-        console.log('選択された文字列: ', selection.toString());
-        const succeeded = document.execCommand('copy');
-        if (succeeded) {
-            alert('コピーしました');
-        } else {
-            alert('コピーが失敗しました');
-        }
-        selection.removeAllRanges();
+window.addEventListener('DOMContentLoaded', ()=>{
+    document.querySelectorAll('[data-selector]').forEach(x=>{
+        const selector=x.dataset["selector"];
+        x.addEventListener('click',()=>{
+            const content=x.closest('.d-flex').querySelector(selector).textContent;
+            (async()=>Object.assign(document.createElement('textarea'),{
+                textContent:content,
+                style:'positon:absolute;top:-999px',
+            }))()
+                .then(res=>document.querySelector('body').appendChild(res))
+                .then(res=>void(res.select(),document.execCommand('copy'))||res)
+                .then(res=>document.querySelector('body').removeChild(res));
+        });
     });
-}, false);
+});
