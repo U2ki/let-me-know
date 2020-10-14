@@ -12,7 +12,7 @@
             <div class="card m-3">
                 <div class="card-header">質問[" {{$question->title}} "]に来た回答</div>
                 <div class="card-body">
-                    表示件数多そうだからそこをページネーションにしたい、、、<br>
+{{--                    表示件数多そうだからそこをページネーションにしたい、、、<br>--}}
                     <table class="table table-striped">
                         <thead>
                             <tr>
