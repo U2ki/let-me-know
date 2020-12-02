@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
         <style>
             html, body {
                 background-color: #fff;
@@ -40,12 +41,16 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
+            .description {
+                padding: 3em 1em;
             }
 
             .title {
                 font-size: 80px;
+            }
+
+            .reason {
+                padding-left: 16em;
             }
 
             .links > a {
