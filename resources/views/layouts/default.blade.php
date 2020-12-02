@@ -49,8 +49,8 @@
                 font-size: 80px;
             }
 
-            .reason {
-                padding-left: 16em;
+            .subtitle {
+                border-bottom: 1px solid #2c2c2f;
             }
 
             .links > a {
