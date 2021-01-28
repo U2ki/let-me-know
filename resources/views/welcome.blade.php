@@ -15,7 +15,10 @@
             　(私の大学ではTwitter利用者が多く、Twitterにはそのような機能がなかったため)<br>
             ③ 一つの画面で回答数の確認やリンクのコピーなどできれば利用者的に使いやすいと感じたため<br><br>
             <span class="subtitle">環境/使用言語：</span><br>
-            Docker / PHP(Laravel)+MySQL
+            Docker / PHP(Laravel)+MySQL<br><br>
+            <span class="subtitle">テスト用アカウント：</span><br>
+            メールアドレス：test00dev00@gmail.com<br>
+            パスワード：password
         </p>
         <p class="text-center m-3">2020/08</p>
     </div>
